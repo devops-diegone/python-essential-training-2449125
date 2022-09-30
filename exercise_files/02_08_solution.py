@@ -1,6 +1,9 @@
+from cmath import sin
 import os
 import time
 from termcolor import colored
+
+from math import cos, sin, pi
 
 class Canvas:
     def __init__(self, width, height):
@@ -29,6 +32,7 @@ class TerminalScribe:
         self.mark = '*'
         self.framerate = 0.05
         self.pos = [0, 0]
+        self.direction = 0.0
 
     def up(self):
         pos = [self.pos[0], self.pos[1]-1]
@@ -68,6 +72,14 @@ class TerminalScribe:
             self.up()
             i = i + 1
 
+    def forward(self):
+        x = self.pos[0]
+        y = self.pos[1]
+        new_x = x + sin((self.direction / 180) * pi)
+        new_y = y + cos((self.direction / 180) * pi)
+        pos = [new_x, new_y]
+        if not self.canvas.hitsWall(pos):
+            self.draw(pos)
 
 
     def draw(self, pos):
@@ -80,5 +92,8 @@ class TerminalScribe:
 canvas = Canvas(30, 30)
 scribe = TerminalScribe(canvas)
 
-scribe.drawSquare(20)
+# scribe.drawSquare(20)
 
+scribe.pos = [10, 10]
+scribe.direction = 45
+scribe.forward()
