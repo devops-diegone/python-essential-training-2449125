@@ -78,10 +78,11 @@ class TerminalScribe:
 
 canvas = Canvas(30, 30)
 scribe = TerminalScribe(canvas)
-scribe.setDegrees(155)
+scribe.setDegrees(135)
 for i in range(30):
     scribe.forward()
-    print(scribe.direction)
-    print(scribe.pos)
-    time.sleep(2)
+    ## DEBUG
+    # print(scribe.direction)
+    # print(scribe.pos)
+    # time.sleep(2)
 
